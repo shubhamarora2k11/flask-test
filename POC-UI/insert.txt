@@ -1,0 +1,20 @@
+
+
+
+" , "DS ID" , "GSTIN of the associate" , "E ID" , "Name" , "State" , "SAC" , "Herbalife GSTIN" , "Herbalife Bill To address" , "Taxable value" , "Rate" , "IGST" , "Type" , "Email ID" , "Email Sent status " , "Original tax invoice received" , "Invoice Date" , "Invoice No" , "Date of receipt of Invoice" , "Month of receipt of Invoice" , "Remarks" , "Email Acknowlegement sent" , "doc_status
+
+
+
+
+
+"0" , "W2636334" , "03AAACH8025R1ZD" , "1" , "A" , "PUNJAB" , "9985" , "29AAACH8025R2ZY" , ""Herbalife International India Private Limited" , "#14" , " Pardhanani Wilshire" , " Commissariat road" , " Bangalore -560025"" , "39488.4" , "18%" , "7107.91" , "RO" , "vaibhavgopalka@bsraffiliates.com" , "yes" , "yes" , "2018-03-30" , "38" , "" , "" , "" , "yes" , "0"
+"1" , "W2035766" , "03AAACH8025R1ZD" , "2" , "B" , "PUNJAB" , "9985" , "29AAACH8025R2ZY" , ""Herbalife International India Private Limited" , "#14" , " Pardhanani Wilshire" , " Commissariat road" , " Bangalore -560025"" , "133281.32" , "18%" , "23990.63" , "RO" , "vaibhavgopalka@bsraffiliates.com" , "yes" , "YES" , "2018-03-01" , "6" , "" , "" , "" , "YES" , "0"
+"2" , "W2035766" , "03AAACH8025R1ZD" , "3" , "B" , "PUNJAB" , "9985" , "29AAACH8025R2ZY" , ""Herbalife International India Private Limited" , "#14" , " Pardhanani Wilshire" , " Commissariat road" , " Bangalore -560025"" , "36236.26" , "18%" , "6522.53" , "PB" , "vaibhavgopalka@bsraffiliates.com" , "yes" , "YES" , "2018-03-01" , "6" , "" , "" , "" , "YES" , "1"
+
+
+from datetime import datetime
+ob = Details(id = 0 , order_id = 101, ass_id = 1001,  ass_gstin = 'a01', ass_name = 'A', state = 'AS01',  sac = 'sac', h_gstin = 'sss' , taxable_value = 11.22 , rate = 19 , igst = '12', typ =  's', email ='sss@ss.com', in_date =  datetime(2012, 3, 3, 10, 10, 10),  in_no = 'sss',   re_date =  datetime(2012, 3, 3, 10, 10, 10))   
+
+ob = Details(id = 1 , order_id = 102, ass_id = 1002,  ass_gstin = 'a02', ass_name = 'B', state = 'BS01',  sac = 'sac', h_gstin = 'sss' , taxable_value = 11.22 , rate = 19 , igst = '12', typ =  's', email ='sss@ss.com', in_date =  datetime(2012, 3, 3, 10, 10, 10),  in_no = 'sss',   re_date =  datetime(2012, 3, 3, 10, 10, 10))   
+
+ob = Details(id = 2 , order_id = 103, ass_id = 1003,  ass_gstin = 'a02', ass_name = 'B', state = 'BS01',  sac = 'sac', h_gstin = 'sss' , taxable_value = 11.22 , rate = 19 , igst = '12', typ =  's', email ='sss@ss.com', in_date =  datetime(2012, 3, 3, 10, 10, 10),  in_no = 'sss',   re_date =  datetime(2012, 3, 3, 10, 10, 10))   

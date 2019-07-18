@@ -1,0 +1,110 @@
+{% extends 'layout.html' %}
+{% block content %}
+
+	<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 ">
+						<h1 class="h2">Dashboard</h1>
+						<div class="btn-toolbar mb-2 mb-md-0">
+							<div class="btn-group mr-2">
+								<!--<button class="btn btn-sm btn-outline-secondary">Share</button>-
+								<form action="{{url_for('home')}}">
+									<button class="btn btn-sm btn-outline-secondary" style="margin-right: 10px;">New Request</button>
+								</form>
+								<form action="/">
+								<button class="btn btn-sm btn-outline-secondary">Export</button>
+								</form>-->
+							</div>
+							<!--
+							<button class="btn btn-sm btn-outline-secondary dropdown-toggle">
+								<span data-feather="calendar"></span>
+								This week
+							</button>-->
+						</div>
+					</div>
+
+					<!-- <canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas> 
+
+					<h2>Section title</h2>-->
+					<div class="table-responsive" style="text-align: center;">
+						<table class="table table-hover  table-striped">
+							<thead>
+								 <tr>
+									<th scope="col">File ID</th>
+									<th scope="col">File Name</th>
+									<th scope="col">File Type</th>
+									<th scope="col">Status</th>
+								</tr>
+							</thead>  
+							<tbody>
+
+								{% for item in files %}
+                
+								<tr>
+								<th scope="row"><a href="{{url_for('home')}}">{{item.file_id}}</a></th>  
+								<td>{{item.file_name}}</td>
+								<td>{{item.file_type}}</td>
+								{% if item.file_status == 1 %}
+								<td id="{{item.file_id}}"><a href="{{ url_for('files') }}">View</a></td>
+								{% elif item.file_status == 0 %}
+								<td id="{{item.file_id}}"> Started </td>
+								{% elif item.file_status == 9 %}
+								<td id="{{item.file_id}}"> Failed </td>
+								{% elif item.file_status == 2 %}
+								<td id="{{item.file_id}}">	Processing </td>
+								
+								{% endif %}
+								</tr>
+								
+								{% endfor %}
+							</tbody>
+						</table>
+					</div>
+			
+		{% endblock content%}
+
+{% block script %}
+		<script src="https://www.gstatic.com/firebasejs/6.3.0/firebase-app.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/6.3.0/firebase-auth.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/6.3.0/firebase-database.js"></script>
+
+		<script>
+			// Your web app's Firebase configuration
+			var firebaseConfig = {
+				apiKey: "AIzaSyAkbqYUHPoW5CkDwqTNCldT6uK1DE9feVU",
+				authDomain: "rest-api-demo-d8e9e.firebaseapp.com",
+				databaseURL: "https://rest-api-demo-d8e9e.firebaseio.com",
+				projectId: "rest-api-demo-d8e9e",
+				storageBucket: "rest-api-demo-d8e9e.appspot.com",
+				messagingSenderId: "656615272153",
+				appId: "1:656615272153:web:a9a159829dff22f4"
+			};
+			// Initialize Firebase
+			firebase.initializeApp(firebaseConfig);
+
+			var docIDArray = {{ data|tojson }} ;
+
+				for(var i in docIDArray) {
+				var status_change_alert = firebase.database().ref('nopool/' + String(docIDArray[i]));
+				status_change_alert.on('value', function(snapshot) {
+					console.log(snapshot.val());
+
+					var link = "http://localhost:5000/watcher/";
+					var url = link.concat(snapshot.val()['job_id'], '/', snapshot.val()['status']); 
+					console.log(url)
+					var entry = {};
+					fetch(url, {
+							method: "POST",
+							credentials: "include",
+							body: JSON.stringify(entry),
+							cache: "no-cache",
+							headers: new Headers({
+								"content-type": "application/json"
+							})
+
+						})
+					document.getElementById(snapshot.val()['job_id']).innerHTML = snapshot.val()['status'];	
+				});
+				}
+
+		</script>
+
+{% endblock %}

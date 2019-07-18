@@ -1,0 +1,35 @@
+<html>
+<head>
+<title>
+Customer Feedback Analysis
+</title>
+<style type="text/css">
+            .button{
+                background: url(/static/icon2.png) no-repeat;
+                cursor:pointer;
+                border: none;
+                width: 200px;
+                height:200px;
+                  }
+            .h3{
+                margin: 200px;
+            }
+            
+        </style>
+ </head>
+<body>
+<div class='container mg' style="text-align:center">
+    <h1 style="text-align:center;margin-top:50px;">Press the below button to start recording.</h1>
+        <form method="POST" action="">
+        {{ form.hidden_tag() }}
+        
+				<div class="form-group">
+					{{ form.submit(class="button" )}}
+				</div>
+    	</form>		
+    	
+    	{{data}}
+        
+</div>
+</body>
+</html>

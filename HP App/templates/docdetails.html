@@ -1,0 +1,49 @@
+{% extends 'layout.html' %}
+{% block content %}
+     
+     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 ">
+            <h1 class="h2">Document Details</h1>
+            <div class="btn-toolbar mb-2 mb-md-0">
+              <div class="btn-group mr-2">
+            </div>
+          </div>
+          </main>
+          <br>
+          <div class="container">
+          <form method="POST" enctype="multipart/form-data">
+                {{ form.hidden_tag() }}
+              <div class="input-group">
+                <div class="input-group-prepend"  >
+                  <span class="input-group-text" style="width:100px;">Title</span>
+                </div>
+                {{ form.title(class="form-control", placeholder="Enter document title") }}
+              </div>
+              <br>
+              <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" style="width:100px;" id="inputGroupFileAddon01">File</span>
+              </div>
+              <div class="custom-file">
+                
+                {{ form.file( class="custom-file-input", id="inputGroupFile01") }}
+
+                <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+
+              </div>
+            </div>
+
+              <br>
+              {{ form.submit(class="btn btn-secondary") }}
+          </form>
+        </div>
+      </div>
+    </div>
+      
+
+
+{% endblock content%}
+
+{% block script %}
+
+
+{% endblock %}

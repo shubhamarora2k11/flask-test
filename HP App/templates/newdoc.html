@@ -1,0 +1,31 @@
+{% extends 'layout.html' %}
+{% block content %}
+     
+ 
+          <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 ">
+            <h1 class="h2">Document Details</h1>
+            </div>
+          </main>
+          <br>
+          <div class="container">
+          <form method="POST" enctype="multipart/form-data">
+                {{ form.hidden_tag() }}
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <label class="input-group-text" for="inputGroupSelect01">Document Type</label>
+                </div>
+                 {{ form.select( class="custom-select" , id="inputGroupSelect01" ) }}
+              </div>
+              <br>
+              {{ form.proceed(class="btn btn-secondary") }}
+          </form>
+        </div>
+      
+
+
+{% endblock content%}
+
+{% block script %}
+
+
+{% endblock %}

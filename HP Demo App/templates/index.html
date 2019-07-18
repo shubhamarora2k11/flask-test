@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<meta name="description" content="">
+		<meta name="author" content="">
+		<link rel="icon" href="../../../../favicon.ico">
+
+		<title>Application</title>
+
+		<!-- Bootstrap core CSS -->
+		<link href="static/bootstrap.min.css" rel="stylesheet">
+
+		<!-- Custom styles for this template -->
+	 <!-- <link href="dashboard.css" rel="stylesheet">-->
+	</head>
+
+	<body>
+
+		<nav class="navbar navbar-dark flex-md-nowrap p-0 shadow" style="height:60px; background-color: #00338D">
+			<!--<a class="navbar-brand col-sm-3 col-md-2 mr-0 ml-5" href="{{url_for('home')}}">KPMG</a>
+		 -->
+			<a class="navbar-brand" href="{{url_for('home')}}">
+				<img src="static/kpmg.png" width="30" height="30" alt="" style="margin-left: 60px; width: 100px; height: 40px;">
+			</a>
+
+		 </nav>
+		 <br>
+				<div class="container">
+								<div class="row">
+										<div class="col-md-8">
+											{% with messages = get_flashed_messages(with_categories=true) %}
+													{% if messages %}
+															{% for category, message in messages %}
+																	<div class="alert alert-{{ category }}">
+																			{{ message}}
+																	</div>
+															{% endfor %}
+													{% endif %}
+											{% endwith %}
+										</div>
+									</div>
+					</div>
+								 
+				<main role="main" class="container">
+
+
+ 
+					<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 ">
+						<h1 class="h2">Dashboard</h1>
+						<div class="btn-toolbar mb-2 mb-md-0">
+							<div class="btn-group mr-2">
+								<!--<button class="btn btn-sm btn-outline-secondary">Share</button>-->
+								<form action="{{url_for('new')}}">
+									<button class="btn btn-sm btn-outline-secondary" style="margin-right: 10px;">New Request</button>
+								</form>
+								<form action="/">
+								<button class="btn btn-sm btn-outline-secondary">Export</button>
+								</form>
+							</div>
+							<!--
+							<button class="btn btn-sm btn-outline-secondary dropdown-toggle">
+								<span data-feather="calendar"></span>
+								This week
+							</button>-->
+						</div>
+					</div>
+
+					<!-- <canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas> 
+
+					<h2>Section title</h2>-->
+					<div class="table-responsive" style="text-align: center;">
+						<table class="table table-hover  table-striped">
+							<thead>
+								 <tr>
+									<th scope="col">File ID</th>
+									<th scope="col">File Name</th>
+									<th scope="col">File Type</th>
+									<th scope="col">File Status</th>
+								</tr>
+							</thead>  
+							<tbody>
+
+								{% for item in files %}
+                
+								<tr>
+								<th scope="row"><a href="{{url_for('home')}}">{{item.file_id}}</a></th>  
+								<td>{{item.file_name}}</td>
+								<td>{{item.file_type}}</td>
+								<td id="{{item.file_id}}">{{item.file_status}}</td>
+								</tr>
+								
+								{% endfor %}
+							</tbody>
+						</table>
+					</div>
+				</main>
+			</div>
+		</div>
+
+			
+		 
+
+			<!-- Bootstrap core JavaScript
+		================================================== -->
+		<!-- Placed at the end of the document so the pages load faster -->
+		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+		<script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
+		<script src="static/popper.min.js"></script>
+		<script src="static/bootstrap.min.js"></script>
+
+		<!-- Icons -->
+		<script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
+		<script>
+			feather.replace()
+		</script>
+		<script src="https://www.gstatic.com/firebasejs/6.3.0/firebase-app.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/6.3.0/firebase-auth.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/6.3.0/firebase-database.js"></script>
+
+		<script>
+			// Your web app's Firebase configuration
+			var firebaseConfig = {
+				apiKey: "AIzaSyAkbqYUHPoW5CkDwqTNCldT6uK1DE9feVU",
+				authDomain: "rest-api-demo-d8e9e.firebaseapp.com",
+				databaseURL: "https://rest-api-demo-d8e9e.firebaseio.com",
+				projectId: "rest-api-demo-d8e9e",
+				storageBucket: "rest-api-demo-d8e9e.appspot.com",
+				messagingSenderId: "656615272153",
+				appId: "1:656615272153:web:a9a159829dff22f4"
+			};
+			// Initialize Firebase
+			firebase.initializeApp(firebaseConfig);
+
+			var docIDArray = {{ data|tojson }} ;
+
+				for(var i in docIDArray) {
+				var status_change_alert = firebase.database().ref('nopool/' + String(docIDArray[i]));
+				status_change_alert.on('value', function(snapshot) {
+					console.log(snapshot.val());
+
+					var link = "http://localhost:5000/watcher/";
+					var url = link.concat(snapshot.val()['job_id'], '/', snapshot.val()['status']); 
+					console.log(url)
+					var entry = {};
+					fetch(url, {
+							method: "POST",
+							credentials: "include",
+							body: JSON.stringify(entry),
+							cache: "no-cache",
+							headers: new Headers({
+								"content-type": "application/json"
+							})
+
+						})
+					document.getElementById(snapshot.val()['job_id']).innerHTML = snapshot.val()['status'];	
+				});
+				}
+
+		</script>
+
+	</body>
+</html>

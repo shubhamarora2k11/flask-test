@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../../../favicon.ico">
+
+    <title>Application</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="static/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+   <!-- <link href="dashboard.css" rel="stylesheet">-->
+  </head>
+
+  <body>
+
+    <nav class="navbar navbar-dark bg-dark flex-md-nowrap p-0 shadow" style="height:60px;">
+      <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">KPMG</a>
+      <!--<input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
+      <ul class="navbar-nav px-3">
+        <li class="nav-item text-nowrap">
+          <a class="nav-link" href="#">Sign out</a>
+        </li>
+      </ul> -->
+    </nav>
+    <div class="container">
+            <form method="POST" action="" enctype="multipart/form-data">
+                {{ form2.hidden_tag() }}
+
+                <div class="modal-body">
+                    <div class="form-group">
+                      {{ form.orderid.label(class="col-form-label", style="display:block;") }}
+                      {{ form.orderid(type="text", class="form-control", id="recipient-name", style="display:block;")}}
+                    </div>
+               </div>   
+               <div class="container">
+                      
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" id="inputGroup-sizing-sm" style="width: 160px;">Associate GSTIN</span>
+                    </div>
+                      {{ form2.ass_gstin( type="text", class="form-control")}}
+                  </div>  
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" id="inputGroup-sizing-sm" style="width: 160px;">Associate Email</span>
+                    </div>
+                      {{ form2.ass_email( type="text", class="form-control")}}
+                  </div>  
+                  
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" id="inputGroup-sizing-sm" style="width: 160px;">State</span>
+                    </div>
+                      {{ form2.state( type="text", class="form-control")}}
+                  </div>  
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" id="inputGroup-sizing-sm" style="width: 160px;">SAC</span>
+                    </div>
+                      {{ form2.sac( type="text", class="form-control")}}
+                  </div>  
+                  
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" id="inputGroup-sizing-sm" style="width: 160px;">Herbalife GSTIN</span>
+                    </div>
+                      {{ form2.h_gstin( type="text", class="form-control")}}
+                  </div>  
+
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" id="inputGroup-sizing-sm" style="width: 160px;">Bill To address</span>
+                    </div>
+                      {{ form2.h_gstin( type="text", class="form-control")}}
+                  </div>  
+
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" id="inputGroup-sizing-sm" style="width: 160px;">IGST</span>
+                    </div>
+                      {{ form2.igst( type="text", class="form-control")}}
+                  </div>  
+
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" id="inputGroup-sizing-sm" style="width: 160px;">Type</span>
+                    </div>
+                      {{ form2.typ( type="text", class="form-control")}}
+                  </div>  
+
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" id="inputGroup-sizing-sm" style="width: 160px;">Email Sent status</span>
+                    </div>
+                      {{ form2.email_sent_status( type="text", class="form-control")}}
+                  </div>  
+
+
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" id="inputGroup-sizing-sm" style="width: 160px;">Email Acknowledged</span>
+                    </div>
+                      {{ form2.email_ack_status( type="text", class="form-control")}}
+                  </div>  
+
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" id="inputGroup-sizing-sm" style="width: 160px;">Orig-Inv Received</span>
+                    </div>
+                      {{ form2.tax_in_received( type="text", class="form-control")}}
+                  </div>  
+
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" id="inputGroup-sizing-sm" style="width: 160px;">Invoice Date</span>
+                    </div>
+                      {{ form2.in_date( type="text", class="form-control")}}
+                  </div>  
+
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" id="inputGroup-sizing-sm" style="width: 160px;">Invoice Number</span>
+                    </div>
+                      {{ form2.in_no( type="text", class="form-control")}}
+                  </div>  
+                  
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" id="inputGroup-sizing-sm" style="width: 160px;">Receipt Date</span>
+                    </div>
+                      {{ form2.re_date( type="text", class="form-control")}}
+                  </div>  
+                  
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" id="inputGroup-sizing-sm" style="width: 160px;">Receipt Remarks</span>
+                    </div>
+                      {{ form2.re_remarks( type="text", class="form-control")}}
+                  </div>  
+                  
+                 </div>
+                 <br>
+                  <div class="modal-footer">
+                      {{ form2.submit(class="btn btn-outline-info") }}
+                  </div>
+               
+             </form>
+           </div>
+</body>
+</html>

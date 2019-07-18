@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    
+    <title>Application</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="../static/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+   <!-- <link href="dashboard.css" rel="stylesheet">-->
+  </head>
+
+  <body>
+
+    <nav class="navbar navbar-dark flex-md-nowrap p-0 shadow" style="height:60px; background-color: #00338D">
+      <!--<a class="navbar-brand col-sm-3 col-md-2 mr-0 ml-5" href="{{url_for('home')}}">KPMG</a>
+     -->
+      <a class="navbar-brand" href="{{url_for('home')}}">
+        <img src="../static/kpmg.png" width="30" height="30" alt="" style="margin-left: 60px; width: 100px; height: 40px;">
+      </a>
+
+     </nav>
+     <br>
+        <div class="container">
+                <div class="row">
+                    <div class="col-md-8">
+                      {% with messages = get_flashed_messages(with_categories=true) %}
+                          {% if messages %}
+                              {% for category, message in messages %}
+                                  <div class="alert alert-{{ category }}">
+                                      {{ message}}
+                                  </div>
+                              {% endfor %}
+                          {% endif %}
+                      {% endwith %}
+                    </div>
+                  </div>
+          </div>
+                 
+        <main role="main" class="container">
+
+
+ 
+          <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 ">
+            <h1 class="h2">Document Details</h1>
+            <div class="btn-toolbar mb-2 mb-md-0">
+              <div class="btn-group mr-2">
+                <!--<button class="btn btn-sm btn-outline-secondary">Share</button>-->
+   <!--             <form action="/new">
+                  <button class="btn btn-sm btn-outline-secondary" style="margin-right: 10px;">New Request</button>
+                </form>
+                <form action="/">
+                <button class="btn btn-sm btn-outline-secondary">Export</button>
+                </form>
+              </div>
+     -->         <!--
+              <button class="btn btn-sm btn-outline-secondary dropdown-toggle">
+                <span data-feather="calendar"></span>
+                This week
+              </button>-->
+            </div>
+          </div>
+          </main>
+          <br>
+          <div class="container">
+          <form method="POST" enctype="multipart/form-data">
+                {{ form.hidden_tag() }}
+
+            
+              <br>
+              <div class="input-group">
+                <div class="input-group-prepend"  >
+                  <span class="input-group-text" style="width:100px;">Title</span>
+                </div>
+                {{ form.title(class="form-control") }}
+              </div>
+              <br>
+              <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" style="width:100px;" id="inputGroupFileAddon01">Upload</span>
+              </div>
+              <div class="custom-file">
+                
+                {{ form.file( class="custom-file-input", id="inputGroupFile01") }}
+
+                <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+
+              </div>
+            </div>
+
+              <br>
+              {{ form.submit(class="btn btn-secondary") }}
+          </form>
+        </div>
+      </div>
+    </div>
+
+      
+     
+
+      <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
+    <script src="../static/popper.min.js"></script>
+    <script src="../static/bootstrap.min.js"></script>
+
+    <!-- Icons -->
+    <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
+    <script>
+      feather.replace()
+    </script>
+
+    <script type="text/javascript">
+       function myfunction(orderid) {
+         window.open("http://localhost:5000/view/"+orderid,"_self");
+        }
+    </script>
+    <script type="text/javascript">
+      $('#exampleModal1').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget) // Button that triggered the modal
+        var recipient = button.data('whatever') // Extract info from data-* attributes
+        // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+        // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+        var modal = $(this)
+        modal.find('.modal-title').text('Upload Image')
+        modal.find('.modal-body input').val(recipient)
+      })
+    </script>
+  
+  </body>
+</html>

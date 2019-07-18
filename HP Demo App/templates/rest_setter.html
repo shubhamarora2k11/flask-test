@@ -1,0 +1,30 @@
+<script src="https://www.gstatic.com/firebasejs/6.3.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/6.3.0/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/6.3.0/firebase-database.js"></script>
+
+<script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyAkbqYUHPoW5CkDwqTNCldT6uK1DE9feVU",
+    authDomain: "rest-api-demo-d8e9e.firebaseapp.com",
+    databaseURL: "https://rest-api-demo-d8e9e.firebaseio.com",
+    projectId: "rest-api-demo-d8e9e",
+    storageBucket: "rest-api-demo-d8e9e.appspot.com",
+    messagingSenderId: "656615272153",
+    appId: "1:656615272153:web:a9a159829dff22f4"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+
+  // Get a reference to the database service
+  var database = firebase.database();
+
+  function writeUserData(jobId, jobName, status) {
+  firebase.database().ref('nopool/' + jobId).set({
+    job_name: jobName,
+    status: status,
+  });
+}
+
+console.log(writeUserData(2, "SCAN", 9))
+</script>

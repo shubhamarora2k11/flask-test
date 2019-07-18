@@ -1,0 +1,3 @@
+ob = File(file_id=501,file_name='File01',file_type='Invoice',file_status='Processing')
+db.session.add(ob)
+db.session.commit()
